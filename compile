@@ -1,0 +1,33 @@
+echo ''
+echo -e '\e[0;34mCOMPILING...\e[0m'
+make > make_output.txt 2>&1
+
+DONE=$(grep -c "make: Nothing to be done" make_output.txt)
+if [[ $DONE == 1 ]];then
+	echo -e '\e[0;33mFILES UP TO DATE\e[0m'
+else
+{
+	if [[ $# > 0 ]]; then
+	{
+		echo '--------------------------------------------------------------'
+		echo -e '\e[0;33mWARNINGS:\e[0m'
+		grep -n warning make_output.txt
+		echo '--------------------------------------------------------------'
+	
+	}
+	fi
+	
+	NUM=$(grep -c error make_output.txt)
+	if [[ $NUM == 0 ]]; then
+		echo -e '\e[0;32mNO COMPILE ERRORS!\e[0m'
+	else
+	{
+		echo -e '\e[0;31mERRORS:\e[0m'
+		grep -n error make_output.txt
+	}
+	fi
+}
+fi
+
+rm make_output.txt
+echo ''

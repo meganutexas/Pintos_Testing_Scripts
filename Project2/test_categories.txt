@@ -1,0 +1,22 @@
+-------------------------------------------
+TEST CATEGORIES:
+-------------------------------------------
+args
+sc
+halt
+exit
+create
+open
+close
+read
+write
+exec
+wait
+multi
+rox
+bad
+multi-oom
+lg
+sm
+syn
+-------------------------------------------

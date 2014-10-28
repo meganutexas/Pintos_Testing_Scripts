@@ -1,0 +1,41 @@
+pass_fail()
+{
+ 	NUM=$(grep -c "PASS" "$1")
+	if [[ $NUM > 0 ]]; then
+		echo -e '\e[0;32mPASSED!\e[0m'
+	else
+		echo -e '\e[0;31mFAILED!!!\e[0m'
+	fi
+}
+
+run_test()
+{
+	echo -n $1 ': '
+	echo '-------------------------------------------' >> priority_tests_output.txt
+	echo $2 '' >> priority_tests_output.txt
+	echo '' >> priority_tests_output.txt
+	make $3 >> priority_tests_output.txt 
+	pass_fail $3
+	echo '-------------------------------------------'
+}
+
+echo -n '' > priority_tests_output.txt
+echo '-------------------------------------------'
+run_test Priority-change PRIORITY-CHANGE tests/threads/priority-change.result
+run_test Priority-donate-one PRIORITY-DONATE-ONE tests/threads/priority-donate-one.result
+run_test Priority-donate-multiple PRIORITY-DONATE-MULTIPLE tests/threads/priority-donate-multiple.result
+run_test Priority-donate-multiple2 PRIORITY-DONATE-MULTIPLE2 tests/threads/priority-donate-multiple2.result
+run_test Priority-donate-nest PRIORITY-DONATE-NEST tests/threads/priority-donate-nest.result
+run_test Priority-donate-sema PRIORITY-DONATE-SEMA tests/threads/priority-donate-sema.result
+run_test Priority-donate-lower PRIORITY-DONATE-LOWER tests/threads/priority-donate-lower.result
+run_test Priority-fifo PRIORITY-FIFO tests/threads/priority-fifo.result
+run_test Priority-preempt PRIORITY-PREEMPT tests/threads/priority-preempt.result
+run_test Priority-sema PRIORITY-SEMA tests/threads/priority-sema.result
+run_test Priority-condvar PRIORITY-CONDVAR tests/threads/priority-condvar.result
+run_test Priority-donate-chain PRIORITY-DONATE-CHAIN tests/threads/priority-donate-chain.result
+
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: terminal outputs saved in priority_tests_output.txt'
+echo ''

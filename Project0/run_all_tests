@@ -1,0 +1,308 @@
+echo '------------------------------------------------------------'
+echo 'Running test01'
+echo '------------------------------------------------------------'
+make test01 > test.txt
+echo '------------------------------------------------------------' > test_full_trace.txt
+echo 'Test 1:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+make rtest01 > rtest.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo '------------------------------------------------------------' > test_diffs.txt
+echo 'Test 1 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test02'
+echo '------------------------------------------------------------'
+make test02 > test.txt
+make rtest02 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 2:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 2 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test03'
+echo '------------------------------------------------------------'
+make test03 > test.txt
+make rtest03 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 3:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 3 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test04'
+echo '------------------------------------------------------------'
+make test04 > test.txt
+make rtest04 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 4:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 4 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test05'
+echo '------------------------------------------------------------'
+make test05 > test.txt
+make rtest05 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 5:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 5 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test06'
+echo '------------------------------------------------------------'
+make test06 > test.txt
+make rtest06 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 6:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 6 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test07'
+echo '------------------------------------------------------------'
+make test07 > test.txt
+make rtest07 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 7:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 7 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test08'
+echo '------------------------------------------------------------'
+make test08 > test.txt
+make rtest08 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 8:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 8 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test09'
+echo '------------------------------------------------------------'
+make test09 > test.txt
+make rtest09 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 9:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 9 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test10'
+echo '------------------------------------------------------------'
+make test10 > test.txt
+make rtest10 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 10:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 10 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test11'
+echo '------------------------------------------------------------'
+make test11 > test.txt
+make rtest11 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 11:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 11 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test12'
+echo '------------------------------------------------------------'
+make test12 > test.txt
+make rtest12 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 12:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 12 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test13'
+echo '------------------------------------------------------------'
+make test13 > test.txt
+make rtest13 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 13:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 13 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test14'
+echo '------------------------------------------------------------'
+make test14 > test.txt
+make rtest14 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 14:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 14 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test15'
+echo '------------------------------------------------------------'
+make test15 > test.txt
+make rtest15 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 15:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 15 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'Running test16'
+echo '------------------------------------------------------------'
+make test16 > test.txt
+make rtest16 > rtest.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Test 16:' >> test_full_trace.txt
+echo '------------------------------------------------------------' >> test_full_trace.txt
+echo 'Our run:' >> test_full_trace.txt
+cat test.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo 'Reference run:' >> test_full_trace.txt
+cat rtest.txt >> test_full_trace.txt
+echo ' ' >> test_full_trace.txt
+echo ' ' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+echo 'Test 16 Differences' >> test_diffs.txt
+echo '------------------------------------------------------------' >> test_diffs.txt
+diff test.txt rtest.txt >> test_diffs.txt
+
+echo 'DONE'
+echo ' '
+echo 'NOTE: differences of tests in test_diffs.txt file'
+echo 'NOTE: full trace of all tests in test_full_trace.txt'

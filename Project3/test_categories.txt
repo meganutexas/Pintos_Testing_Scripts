@@ -1,0 +1,33 @@
+-------------------------------------------
+TEST CATEGORIES:
+-------------------------------------------
+USERPROG:
+args
+sc
+halt
+exit
+create
+open
+close
+read
+write
+exec
+wait
+multi
+rox
+bad
+lg
+sm
+syn
+
+p2_functionality
+p2_robustness
+
+VM:
+pt
+page
+
+VM EXTRA CREDIT:
+mmap
+page-merge
+-------------------------------------------

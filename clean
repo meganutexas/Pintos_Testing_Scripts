@@ -1,0 +1,5 @@
+make clean > /dev/null 2>&1
+echo ''
+echo -e '\e[0;34mPINTOS CLEANED\e[0m'
+echo ''
+

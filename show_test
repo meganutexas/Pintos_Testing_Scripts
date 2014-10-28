@@ -1,0 +1,23 @@
+echo ''
+echo '--------------------------------------------------------------'
+echo -n 'FOLDER: '
+read FILE
+echo -n 'TEST: '
+read TEST
+
+echo '--------------------------------------------------------------'
+if [ -f ../../tests/$FILE/$TEST.c ]; then
+	cat ../../tests/$FILE/$TEST.c
+elif [ -f ../../tests/$FILE/$TEST.ck ]; then
+{
+	echo 'ONLY A CK FILE FOR THIS TEST:'
+	echo ''
+	cat ../../tests/$FILE/$TEST.ck
+}
+else
+{
+	echo "ERROR: couldn't find the TEST in the FOLDER you indicated"
+}
+fi
+echo '--------------------------------------------------------------'
+echo ''

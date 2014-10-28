@@ -1,0 +1,25 @@
+NAME=$1
+shift
+
+source create_helpers/create_top $NAME
+
+for var in "$@"
+do
+    cat create_helpers/$var.txt >> $NAME
+done
+
+echo "echo ''" >> $NAME
+echo "echo 'FAILED:' \$FAILS 'out of' \$TESTS" >> $NAME
+echo "echo ''" >> $NAME
+echo "echo 'DONE'" >> $NAME
+echo "echo ''" >> $NAME
+echo "echo 'NOTE: terminal output for tests saved in $NAME-output.txt'" >> $NAME
+echo "echo ''" >> $NAME
+
+echo '-----------------------------------------------------'
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: new testing script created and saved in' $NAME
+echo ''
+echo '-----------------------------------------------------'

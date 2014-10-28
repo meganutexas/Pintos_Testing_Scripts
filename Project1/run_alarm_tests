@@ -1,0 +1,35 @@
+pass_fail()
+{
+ 	NUM=$(grep -c "PASS" "$1")
+	if [[ $NUM > 0 ]]; then
+		echo -e '\e[0;32mPASSED!\e[0m'
+	else
+		echo -e '\e[0;31mFAILED!!!\e[0m'
+	fi
+}
+
+run_test()
+{
+	echo -n $1 ': '
+	echo '-------------------------------------------' >> alarm_tests_output.txt
+	echo $2 '' >> alarm_tests_output.txt
+	echo '' >> alarm_tests_output.txt
+	make $3 >> alarm_tests_output.txt 
+	pass_fail $3
+	echo '-------------------------------------------'
+}
+
+echo -n > alarm_tests_output.txt
+echo '-------------------------------------------'
+run_test Alarm-zero ALARM-ZERO tests/threads/alarm-zero.result
+run_test Alarm-single ALARM-SINGLE tests/threads/alarm-single.result
+run_test Alarm-multiple ALARM-MULTIPLE tests/threads/alarm-multiple.result
+run_test Alarm-negative ALARM-NEGATIVE tests/threads/alarm-negative.result
+run_test Alarm-simultaneous ALARM-SIMULTANEOUS tests/threads/alarm-simultaneous.result
+run_test Alarm-priority ALARM-PRIORITY tests/threads/alarm-priority.result
+
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: terminal output for tests saved in alarm_tests_output.txt'
+echo ''

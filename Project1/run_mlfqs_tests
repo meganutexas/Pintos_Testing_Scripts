@@ -1,0 +1,39 @@
+pass_fail()
+{
+ 	NUM=$(grep -c "PASS" "$1")
+	if [[ $NUM > 0 ]]; then
+		echo -e '\e[0;32mPASSED!\e[0m'
+	else
+		echo -e '\e[0;31mFAILED!!!\e[0m'
+	fi
+}
+
+run_test()
+{
+	echo -n $1 ': '
+	echo '-------------------------------------------' >> mlfqs_tests_output.txt
+	echo $2 '' >> mlfqs_tests_output.txt
+	echo '' >> mlfqs_tests_output.txt
+	make $3 >> mlfqs_tests_output.txt 
+	pass_fail $3
+	echo '-------------------------------------------'
+}
+
+echo -n '' > mlfqs_tests_output.txt
+echo '-------------------------------------------'
+
+run_test Mlfqs-load-1 MLFQS-LOAD-1 tests/threads/mlfqs-load-1.result
+run_test Mlfqs-load-60 MLFQS-LOAD-60 tests/threads/mlfqs-load-60.result
+run_test Mlfqs-load-avg MLFQS-AVG tests/threads/mlfqs-load-avg.result
+run_test Mlfqs-recent-1 MLFQS-RECENT-1 tests/threads/mlfqs-recent-1.result
+run_test Mlfqs-fair-2 MLFQS-FAIR-2 tests/threads/mlfqs-fair-2.result
+run_test Mlfqs-fair-20 MLFQS-FAIR-20 tests/threads/mlfqs-fair-20.result
+run_test Mlfqs-nice-2 MLFQS-NICE-2 tests/threads/mlfqs-nice-2.result
+run_test Mlfqs-nice-10 MLFQS-NICE-10 tests/threads/mlfqs-nice-10.result
+run_test Mlfqs-block MLFQS-BLOCK tests/threads/mlfqs-block.result
+
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: terminal outputs saved in mlfqs_tests_output.txt'
+echo ''

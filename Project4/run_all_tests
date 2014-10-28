@@ -1,0 +1,173 @@
+FAILS=0
+TESTS=0
+REDIRECT=0;
+
+if [ -t 1 ] ; then
+  echo output going to the screen
+else
+  REDIRECT=1;
+fi
+
+pass_fail()
+{
+ 	NUM=$(grep -c "PASS" "$1")
+	if [[ $NUM > 0 ]]; then
+		echo -e '\e[0;32mPASSED!\e[0m'
+	else
+	{
+		echo -e '\e[0;31mFAILED!!!\e[0m'
+		FAILS=`expr $FAILS + 1`
+	}
+	fi
+}
+
+run_test()
+{
+	TESTS=`expr $TESTS + 1`
+	echo -n $TESTS. $1 ': '
+	echo '-------------------------------------------' >> all_tests_output.txt
+	echo $2 '' >> all_tests_output.txt
+	echo '' >> all_tests_output.txt
+	
+	if [[ $REDIRECT > 0 ]]; then
+		echo -ne '\tRunning test:' $TESTS '\r' >&2
+	fi
+	
+	make $3 >> all_tests_output.txt 
+	pass_fail $3
+	echo '-------------------------------------------'
+}
+
+echo -n > all_tests_output.txt
+echo '-------------------------------------------'
+
+run_test Args-none ARGS-NONE tests/userprog/args-none.result
+run_test Args-single ARGS-SINGLE tests/userprog/args-single.result
+run_test Args-multiple ARGS-MULTIPLE tests/userprog/args-multiple.result
+run_test Args-many ARGS-MANY tests/userprog/args-many.result
+run_test Args-dbl-space ARGS-DBL-SPACE tests/userprog/args-dbl-space.result
+run_test Sc-bad-sp SC-BAD-SP tests/userprog/sc-bad-sp.result
+run_test Sc-bad-arg SC-BAD-ARG tests/userprog/sc-bad-arg.result
+run_test Sc-boundary SC-BOUNDARY tests/userprog/sc-boundary.result
+run_test Sc-boundary-2 SC-BOUNDARY-2 tests/userprog/sc-boundary-2.result
+run_test Halt HALT tests/userprog/halt.result
+run_test Exit EXIT tests/userprog/exit.result
+run_test Create-normal CREATE-NORMAL tests/userprog/create-normal.result
+run_test Create-empty CREATE-EMPTY tests/userprog/create-empty.result
+run_test Create-null CREATE-NULL tests/userprog/create-null.result
+run_test Create-bad-ptr CREATE-BAD-PTR tests/userprog/create-bad-ptr.result
+run_test Create-long CREATE-LONG tests/userprog/create-long.result
+run_test Create-exists CREATE-EXISTS tests/userprog/create-exists.result
+run_test Create-bound CREATE-BOUND tests/userprog/create-bound.result
+run_test Open-normal OPEN-NORMAL tests/userprog/open-normal.result
+run_test Open-missing OPEN-MISSING tests/userprog/open-missing.result
+run_test Open-boundary OPEN-BOUNDARY tests/userprog/open-boundary.result
+run_test Open-empty OPEN-EMPTY tests/userprog/open-empty.result
+run_test Open-null OPEN-NULL tests/userprog/open-null.result
+run_test Open-bad-ptr OPEN-BAD-PTR tests/userprog/open-bad-ptr.result
+run_test Open-twice OPEN-TWICE tests/userprog/open-twice.result
+run_test Close-normal CLOSE-NORMAL tests/userprog/close-normal.result
+run_test Close-twice CLOSE-TWICE tests/userprog/close-twice.result
+run_test Close-stdin CLOSE-STDIN tests/userprog/close-stdin.result
+run_test Close-stdout CLOSE-STDOUT tests/userprog/close-stdout.result
+run_test Close-bad-fd CLOSE-BAD-FD tests/userprog/close-bad-fd.result
+run_test Read-normal READ-NORMAL tests/userprog/read-normal.result
+run_test Read-bad-ptr READ-BAD-PTR tests/userprog/read-bad-ptr.result
+run_test Read-boundary READ-BOUNDARY tests/userprog/read-boundary.result
+run_test Read-zero READ-ZERO tests/userprog/read-zero.result
+run_test Read-stdout READ-STDOUT tests/userprog/read-stdout.result
+run_test Read-bad-fd READ-BAD-FD tests/userprog/read-bad-fd.result
+run_test Write-normal WRITE-NORMAL tests/userprog/write-normal.result
+run_test Write-bad-ptr WRITE-BAD-PTR tests/userprog/write-bad-ptr.result
+run_test Write-boundary WRITE-BOUNDARY tests/userprog/write-boundary.result
+run_test Write-zero WRITE-ZERO tests/userprog/write-zero.result
+run_test Write-stdin WRITE-STDIN tests/userprog/write-stdin.result
+run_test Write-bad-fd WRITE-BAD-FD tests/userprog/write-bad-fd.result
+run_test Exec-once EXEC-ONCE tests/userprog/exec-once.result
+run_test Exec-arg EXEC-ARG tests/userprog/exec-arg.result
+run_test Exec-multiple EXEC-MULTIPLE tests/userprog/exec-multiple.result
+run_test Exec-missing EXEC-MISSING tests/userprog/exec-missing.result
+run_test Exec-bad-ptr EXEC-BAD-PTR tests/userprog/exec-bad-ptr.result
+run_test Wait-simple WAIT-SIMPLE tests/userprog/wait-simple.result
+run_test Wait-twice WAIT-TWICE tests/userprog/wait-twice.result
+run_test Wait-killed WAIT-KILLED tests/userprog/wait-killed.result
+run_test Wait-bad-pid WAIT-BAD-PID tests/userprog/wait-bad-pid.result
+run_test Multi-recurse MULTI-RECURSE tests/userprog/multi-recurse.result
+run_test Multi-child-fd MULTI-CHILD-FD tests/userprog/multi-child-fd.result
+run_test Rox-simple ROX-SIMPLE tests/userprog/rox-simple.result
+run_test Rox-child ROX-CHILD tests/userprog/rox-child.result
+run_test Rox-multichild ROX-MULTICHILD tests/userprog/rox-multichild.result
+run_test Bad-read BAD-READ tests/userprog/bad-read.result
+run_test Bad-write BAD-WRITE tests/userprog/bad-write.result
+run_test Bad-read2 BAD-READ2 tests/userprog/bad-read2.result
+run_test Bad-write2 BAD-WRITE2 tests/userprog/bad-write2.result
+run_test Bad-jump BAD-JUMP tests/userprog/bad-jump.result
+run_test Bad-jump2 BAD-JUMP2 tests/userprog/bad-jump2.result
+run_test lg-create LG-CREATE tests/filesys/base/lg-create.result
+run_test lg-full LG-FULL tests/filesys/base/lg-full.result
+run_test lg-random LG-RANDOM tests/filesys/base/lg-random.result
+run_test lg-seq-block LG-SEQ-BLOCK tests/filesys/base/lg-seq-block.result
+run_test lg-seq-random LG-SEQ-RANDOM tests/filesys/base/lg-seq-random.result
+run_test sm-create SM-CREATE tests/filesys/base/sm-create.result
+run_test sm-full SM-FULL tests/filesys/base/sm-full.result
+run_test sm-random SM-RANDOM tests/filesys/base/sm-random.result
+run_test sm-seq-block SM-SEQ-BLOCK tests/filesys/base/sm-seq-block.result
+run_test sm-seq-random SM-SEQ-RANDOM tests/filesys/base/sm-seq-random.result
+run_test syn-read SYN-READ tests/filesys/base/syn-read.result
+run_test syn-remove SYN-REMOVE tests/filesys/base/syn-remove.result
+run_test syn-write SYN-WRITE tests/filesys/base/syn-write.result
+
+run_test dir-empty-name DIR-EMPTY-NAME tests/filesys/extended/dir-empty-name.result
+run_test dir-mk-tree DIR-MAKE-TREE tests/filesys/extended/dir-mk-tree.result
+run_test dir-mkdir DIR-MKDIR tests/filesys/extended/dir-mkdir.result
+run_test dir-open DIR-OPEN tests/filesys/extended/dir-open.result
+run_test dir-over-file DIR-OVER-FILE tests/filesys/extended/dir-over-file.result
+run_test dir-rm-cwd DIR-RM-CWD tests/filesys/extended/dir-rm-cwd.result
+run_test dir-rm-parent DIR-RM-PARENT tests/filesys/extended/dir-rm-parent.result
+run_test dir-rm-root DIR-RM-ROOT tests/filesys/extended/dir-rm-root.result
+run_test dir-rm-tree DIR-RM-TREE tests/filesys/extended/dir-rm-tree.result
+run_test dir-rmdir DIR-RMDIR tests/filesys/extended/dir-rmdir.result
+run_test dir-under-file DIR-UNDERFILE tests/filesys/extended/dir-under-file.result
+run_test dir-vine DIR-VINE tests/filesys/extended/dir-vine.result
+run_test grow-create GROW-CREATE tests/filesys/extended/grow-create.result
+run_test grow-dir-lg GROW-DIR-LG tests/filesys/extended/grow-dir-lg.result
+run_test grow-file-size GROW-FILE-SIZE tests/filesys/extended/grow-file-size.result
+run_test grow-root-lg GROW-ROOT-LG tests/filesys/extended/grow-root-lg.result
+run_test grow-root-sm GROW-ROOT-SM tests/filesys/extended/grow-root-sm.result
+run_test grow-seq-lg GROW-SEQ-LG tests/filesys/extended/grow-seq-lg.result
+run_test grow-seq-sm GROW-SEQ-SM tests/filesys/extended/grow-seq-sm.result
+run_test grow-sparse GROW-SPARSE tests/filesys/extended/grow-sparse.result
+run_test grow-tell GROW-TELL tests/filesys/extended/grow-tell.result
+run_test grow-two-files GROW-TWO-FILES tests/filesys/extended/grow-two-files.result
+run_test syn-rw SYN-RW tests/filesys/extended/syn-rw.result
+run_test dir-empty-name-persistence DIR-EMPTY-NAME-PERSISTANCE tests/filesys/extended/dir-empty-name-persistence.result
+run_test dir-mk-tree-persistence DIR-MAKE-TREE-PERISTENCE tests/filesys/extended/dir-mk-tree-persistence.result
+run_test dir-mkdir-persitence DIR-MKDIR-PERSISTENCE tests/filesys/extended/dir-mkdir-persistence.result
+run_test dir-open-persistence DIR-OPEN-PERSISTENCE tests/filesys/extended/dir-open-persistence.result
+run_test dir-over-file-persistence DIR-OVER-FILE-PERSISTENCE tests/filesys/extended/dir-over-file-persistence.result
+run_test dir-rm-cwd-persistence DIR-RM-CWD-PERSISTENCE tests/filesys/extended/dir-rm-cwd-persistence.result
+run_test dir-rm-parent-persistence DIR-RM-PARENT-PERSISTENCE tests/filesys/extended/dir-rm-parent-persistence.result
+run_test dir-rm-root-persistence DIR-RM-ROOT-PERSISTENCE tests/filesys/extended/dir-rm-root-persistence.result
+run_test dir-rm-tree-persistence DIR-RM-TREE-PERSISTENCE tests/filesys/extended/dir-rm-tree-persistence.result
+run_test dir-rmdir-persistence DIR-RMDIR-PERSISTENCE tests/filesys/extended/dir-rmdir-persistence.result
+run_test dir-under-file-peristence DIR-UNDERFILE-PERSISTENCE tests/filesys/extended/dir-under-file-persistence.result
+run_test dir-vine-persistence DIR-VINE-PERSISTENCE tests/filesys/extended/dir-vine-persistence.result
+run_test grow-create-persistence GROW-CREATE-PERSISTENCE tests/filesys/extended/grow-create-persistence.result
+run_test grow-dir-lg-persistence GROW-DIR-LG-PERSISTENCE tests/filesys/extended/grow-dir-lg-persistence.result
+run_test grow-file-size-persistence GROW-FILE-SIZE-PERSISTENCE tests/filesys/extended/grow-file-size-persistence.result
+run_test grow-root-lg-persistence GROW-ROOT-LG-PERSISTENCE tests/filesys/extended/grow-root-lg-persistence.result
+run_test grow-root-sm-persistence GROW-ROOT-SM-PERSISTENCE tests/filesys/extended/grow-root-sm-persistence.result
+run_test grow-seq-lg-persistence GROW-SEQ-LG-PERSISTENCE tests/filesys/extended/grow-seq-lg-persistence.result
+run_test grow-seq-sm-persistence GROW-SEQ-SM-PERSISTENCE tests/filesys/extended/grow-seq-sm-persistence.result
+run_test grow-sparse-persistence GROW-SPARSE-PERSISTENCE tests/filesys/extended/grow-sparse-persistence.result
+run_test grow-tell-persistence GROW-TELL-PERSISTENCE tests/filesys/extended/grow-tell-persistence.result
+run_test grow-two-files-persistence GROW-TWO-FILES-PERSISTENCE tests/filesys/extended/grow-two-files-persistence.result
+run_test syn-rw-persistence SYN-RW-PERSISTENCE tests/filesys/extended/syn-rw-persistence.result
+
+echo ''
+echo 'FAILED:' $FAILS 'out of' $TESTS
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: terminal output for tests saved in all_tests_output.txt'
+echo ''

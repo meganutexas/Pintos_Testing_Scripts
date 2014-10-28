@@ -1,0 +1,162 @@
+FAILS=0
+TESTS=0
+REDIRECT=0;
+
+if [ -t 1 ] ; then
+  echo -n ''
+else
+  REDIRECT=1;
+fi
+
+pass_fail()
+{
+ 	NUM=$(grep -c "PASS" "$1")
+	if [[ $NUM > 0 ]]; then
+		echo -e '\e[0;32mPASSED!\e[0m'
+	else
+	{
+		echo -e '\e[0;31mFAILED!!!\e[0m'
+		FAILS=`expr $FAILS + 1`
+	}
+	fi
+}
+
+run_test()
+{
+	TESTS=`expr $TESTS + 1`
+	echo -n $TESTS. $1 ': '
+	echo '-------------------------------------------' >> all_tests_output.txt
+	echo $2 '' >> all_tests_output.txt
+	echo '' >> all_tests_output.txt
+	
+	if [[ $REDIRECT > 0 ]]; then
+		echo -ne '\tRunning test:' $TESTS '\r' >&2
+	fi
+	
+	make $3 >> all_tests_output.txt 
+	pass_fail $3
+	echo '-------------------------------------------'
+}
+
+echo -n > all_tests_output.txt
+
+echo '*******************************************'
+echo 'PROJECT 2: FUNCTIONALITY'
+echo '*******************************************'
+echo ''
+echo '-------------------------------------------'
+
+run_test Args-none ARGS-NONE tests/userprog/args-none.result
+run_test Args-single ARGS-SINGLE tests/userprog/args-single.result
+run_test Args-multiple ARGS-MULTIPLE tests/userprog/args-multiple.result
+run_test Args-many ARGS-MANY tests/userprog/args-many.result
+run_test Args-dbl-space ARGS-DBL-SPACE tests/userprog/args-dbl-space.result
+run_test Halt HALT tests/userprog/halt.result
+run_test Exit EXIT tests/userprog/exit.result
+run_test Create-normal CREATE-NORMAL tests/userprog/create-normal.result
+run_test Create-empty CREATE-EMPTY tests/userprog/create-empty.result
+run_test Create-long CREATE-LONG tests/userprog/create-long.result
+run_test Create-exists CREATE-EXISTS tests/userprog/create-exists.result
+run_test Open-normal OPEN-NORMAL tests/userprog/open-normal.result
+run_test Open-missing OPEN-MISSING tests/userprog/open-missing.result
+run_test Open-twice OPEN-TWICE tests/userprog/open-twice.result
+run_test Close-normal CLOSE-NORMAL tests/userprog/close-normal.result
+run_test Read-normal READ-NORMAL tests/userprog/read-normal.result
+run_test Read-zero READ-ZERO tests/userprog/read-zero.result
+run_test Write-normal WRITE-NORMAL tests/userprog/write-normal.result
+run_test Write-zero WRITE-ZERO tests/userprog/write-zero.result
+run_test Exec-once EXEC-ONCE tests/userprog/exec-once.result
+run_test Exec-arg EXEC-ARG tests/userprog/exec-arg.result
+run_test Exec-multiple EXEC-MULTIPLE tests/userprog/exec-multiple.result
+run_test Wait-simple WAIT-SIMPLE tests/userprog/wait-simple.result
+run_test Wait-twice WAIT-TWICE tests/userprog/wait-twice.result
+run_test Multi-recurse MULTI-RECURSE tests/userprog/multi-recurse.result
+run_test Rox-simple ROX-SIMPLE tests/userprog/rox-simple.result
+run_test Rox-child ROX-CHILD tests/userprog/rox-child.result
+run_test Rox-multichild ROX-MULTICHILD tests/userprog/rox-multichild.result
+run_test lg-create LG-CREATE tests/filesys/base/lg-create.result
+run_test lg-full LG-FULL tests/filesys/base/lg-full.result
+run_test lg-random LG-RANDOM tests/filesys/base/lg-random.result
+run_test lg-seq-block LG-SEQ-BLOCK tests/filesys/base/lg-seq-block.result
+run_test lg-seq-random LG-SEQ-RANDOM tests/filesys/base/lg-seq-random.result
+run_test sm-create SM-CREATE tests/filesys/base/sm-create.result
+run_test sm-full SM-FULL tests/filesys/base/sm-full.result
+run_test sm-random SM-RANDOM tests/filesys/base/sm-random.result
+run_test sm-seq-block SM-SEQ-BLOCK tests/filesys/base/sm-seq-block.result
+run_test sm-seq-random SM-SEQ-RANDOM tests/filesys/base/sm-seq-random.result
+run_test syn-read SYN-READ tests/filesys/base/syn-read.result
+run_test syn-remove SYN-REMOVE tests/filesys/base/syn-remove.result
+run_test syn-write SYN-WRITE tests/filesys/base/syn-write.result
+
+echo ''
+echo '*******************************************'
+echo 'PROJECT 2: ROBUSTNESS'
+echo '*******************************************'
+echo ''
+echo '-------------------------------------------'
+
+run_test Close-stdin CLOSE-STDIN tests/userprog/close-stdin.result
+run_test Close-stdout CLOSE-STDOUT tests/userprog/close-stdout.result
+run_test Close-bad-fd CLOSE-BAD-FD tests/userprog/close-bad-fd.result
+run_test Close-twice CLOSE-TWICE tests/userprog/close-twice.result
+run_test Read-stdout READ-STDOUT tests/userprog/read-stdout.result
+run_test Read-bad-fd READ-BAD-FD tests/userprog/read-bad-fd.result
+run_test Write-stdin WRITE-STDIN tests/userprog/write-stdin.result
+run_test Write-bad-fd WRITE-BAD-FD tests/userprog/write-bad-fd.result
+run_test Multi-child-fd MULTI-CHILD-FD tests/userprog/multi-child-fd.result
+run_test Create-bad-ptr CREATE-BAD-PTR tests/userprog/create-bad-ptr.result
+run_test Exec-bad-ptr EXEC-BAD-PTR tests/userprog/exec-bad-ptr.result
+run_test Open-bad-ptr OPEN-BAD-PTR tests/userprog/open-bad-ptr.result
+run_test Read-bad-ptr READ-BAD-PTR tests/userprog/read-bad-ptr.result
+run_test Write-bad-ptr WRITE-BAD-PTR tests/userprog/write-bad-ptr.result
+run_test Create-bound CREATE-BOUND tests/userprog/create-bound.result
+run_test Open-boundary OPEN-BOUNDARY tests/userprog/open-boundary.result
+run_test Read-boundary READ-BOUNDARY tests/userprog/read-boundary.result
+run_test Write-boundary WRITE-BOUNDARY tests/userprog/write-boundary.result
+run_test Create-null CREATE-NULL tests/userprog/create-null.result
+run_test Open-null OPEN-NULL tests/userprog/open-null.result
+run_test Open-empty OPEN-EMPTY tests/userprog/open-empty.result
+run_test Sc-bad-sp SC-BAD-SP tests/userprog/sc-bad-sp.result
+run_test Sc-bad-arg SC-BAD-ARG tests/userprog/sc-bad-arg.result
+run_test Sc-boundary SC-BOUNDARY tests/userprog/sc-boundary.result
+run_test Sc-boundary-2 SC-BOUNDARY-2 tests/userprog/sc-boundary-2.result
+run_test Exec-missing EXEC-MISSING tests/userprog/exec-missing.result
+run_test Wait-killed WAIT-KILLED tests/userprog/wait-killed.result
+run_test Wait-bad-pid WAIT-BAD-PID tests/userprog/wait-bad-pid.result
+run_test Bad-read BAD-READ tests/userprog/bad-read.result
+run_test Bad-write BAD-WRITE tests/userprog/bad-write.result
+run_test Bad-read2 BAD-READ2 tests/userprog/bad-read2.result
+run_test Bad-write2 BAD-WRITE2 tests/userprog/bad-write2.result
+run_test Bad-jump BAD-JUMP tests/userprog/bad-jump.result
+run_test Bad-jump2 BAD-JUMP2 tests/userprog/bad-jump2.result
+
+echo ''
+echo '*******************************************'
+echo 'PROJECT 3: VM'
+echo '*******************************************'
+echo ''
+echo '-------------------------------------------'
+
+run_test pt-grow-stack PT-GROW-STACK tests/vm/pt-grow-stack.result
+run_test pt-grow-pusha PT-GROW-PUSHA tests/vm/pt-grow-pusha.result
+run_test pt-grow-bad PT-GROW-BAD tests/vm/pt-grow-bad.result
+run_test pt-big-stk-obj PT-BIG-STK-OBJ tests/vm/pt-big-stk-obj.result
+run_test pt-bad-addr PT-BAD-ADDR tests/vm/pt-bad-addr.result
+run_test pt-bad-read PT-BAD-READ tests/vm/pt-bad-read.result
+run_test pt-write-code PT-WRITE-CODE tests/vm/pt-write-code.result
+run_test pt-write-code2 PT-WRITE-CODE2 tests/vm/pt-write-code2.result
+run_test pt-grow-stk-sc PT-GROW-STK-SC tests/vm/pt-grow-stk-sc.result
+run_test page-linear PAGE-LINEAR tests/vm/page-linear.result
+run_test page-parallel PAGE-PARALLEL tests/vm/page-parallel.result
+run_test page-merge-seq PAGE-MERGE-SEQ tests/vm/page-merge-seq.result
+run_test page-merge-par PAGE-MERGE-PAR tests/vm/page-merge-par.result
+run_test page-merge-stk PAGE-MERGE-STK tests/vm/page-merge-stk.result
+run_test page-shuffle PAGE-SHUFFLE tests/vm/page-shuffle.result
+
+echo ''
+echo 'FAILED:' $FAILS 'out of' $TESTS
+echo ''
+echo 'DONE'
+echo ''
+echo 'NOTE: terminal output for tests saved in all_tests_output.txt'
+echo ''
