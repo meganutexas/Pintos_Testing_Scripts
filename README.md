@@ -6,8 +6,8 @@ Scripts for testing the PintOS projects with nice colorful PASS/FAIL output
 You still need to know how to use the basic Pintos testing commands yourself
 - test everything: **make check**
 - determine what your grade is: **make grade**
-- run a single test: **tests/[project]/[test].result**
-  - use the -VERBOSE flag to see the output from the test as it is being run
+- run a single test: **make tests/[project]/[test].result**
+  - use the -VERBOSE=1 flag to see the output from the test as it is being run
 
 ###How to use the scripts
 All scripts need to go in the [project]/build directory to be run properly. 
