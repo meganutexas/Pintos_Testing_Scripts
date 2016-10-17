@@ -11,6 +11,7 @@ You still need to know how to use the basic Pintos testing commands yourself
 
 ###How to use the scripts
 All scripts need to go in the [project]/build directory to be run properly. 
+- all scripts will save off test outputs in a separate file that you can check later
 
 Can run with command: 
 
