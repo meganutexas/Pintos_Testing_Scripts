@@ -1,4 +1,6 @@
 #! /bin/bash
+# Author: Megan Avery
+# Usage: source run_all_traces.sh
 
 FAILS=0
 TESTS=0
